@@ -14,14 +14,6 @@ if(mouse_check_button_pressed(mb_left)) {
 
 if(not click and alarm[0] == -1) {
 	turn += 1;
-	
-	var _plr = players[current_player];
-	
-	if(_plr[? "Link"] == 1) {
-		_plr[? "Multiplier"] += 2;
-		
-		_plr[? "Link"] = 2;
-	}
 								
 	current_player = (current_player + 1) mod player_count;
 								

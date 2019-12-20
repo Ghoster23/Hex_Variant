@@ -77,10 +77,10 @@ switch(board_state) {
 							#region Side
 							var _sl_side = slot_side.neutral;
 								
-							if(j == _line_start_r) {
+							if(j == 0) {
 								_sl_side = slot_side.left;
 							}
-							else if(j == _line_size) {
+							else if(j == _line_size - 1) {
 								_sl_side = slot_side.right;
 							}
 							#endregion
@@ -141,7 +141,7 @@ switch(board_state) {
 						var _resrs = [board[# 4, 8], board[# 10, 8], board[# 16, 8], board[# 7, 4], board[# 13, 4], board[# 7, 12], board[# 13, 12]];
 				
 						for(var i = 0; i < array_length_1d(_resrs); i++) {
-							hexagon_resource_make(_resrs[i], 2);
+							hexagon_resource_make(_resrs[i], 2, i);
 						}
 					}
 					#endregion

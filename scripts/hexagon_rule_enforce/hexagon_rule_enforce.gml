@@ -17,19 +17,22 @@ if(ds_exists(_hex, ds_type_map)) {
 				case rule.connect:
 				#region
 					// Get list of adjacent tiles
-					var _adjs = board_get_adjacent(_hex[? "X"], _hex[? "Y"]);
+					var _adjs = hexagon_get_adjacent(_hex);
 					
 					// If adjacent tiles were found
-					if(_adjs != -1) {
-						var _len = ds_list_size(_adjs);
-						
-						for(var i = 0; i < _len; i++) {
-							var _adj = _adjs[| i];
-							
-							if(_adj[? "Player"] == _player) {
+					var _ind = 0;
+					var _adj = _adjs[| _ind];
+					
+					while(not is_undefined(_adj)) {
+						if(_adj[? "Player"] == _player) {
+							var _con = _adj[? "Connect"];
+							if(_con[0] or _con[1]) {
 								return true;
 							}
 						}
+						
+						_ind++;
+						_adj = _adjs[| _ind];
 					}
 				#endregion
 				break;
@@ -44,19 +47,22 @@ if(ds_exists(_hex, ds_type_map)) {
 				}
 				// If not conquered
 				else if(_conq == -1) {
-					var _adjs = board_get_adjacent(_hex[? "X"], _hex[? "Y"]);
+					var _adjs = hexagon_get_adjacent(_hex);
 					
-					if(_adjs != -1) {
-						var _len = ds_list_size(_adjs);
-						
-						for(var i = 0; i < _len; i++) {
-							var _adj = _adjs[| i];
-							
-							if(_adj[? "Player"] == _player) {
+					var _ind = 0;
+					var _adj = _adjs[| _ind];
+					
+					while(not is_undefined(_adj)) {
+						if(_adj[? "Player"] == _player) {
+							var _con = _adj[? "Connect"];
+							if(_con[0] or _con[1]) {
 								return true;
 							}
 						}
-					}					
+						
+						_ind++;
+						_adj = _adjs[| _ind];
+					}				
 				// If conquered by the other player
 				}else {
 					return false;

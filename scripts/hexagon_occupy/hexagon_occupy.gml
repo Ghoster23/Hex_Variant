@@ -63,8 +63,18 @@ if(ds_exists(_hex, ds_type_map)) {
 			// If connected
 			if(_con[0] or _con[1]) {
 				// Connect owned adjacents
-				if(hexagon_connect_spread(board_get_adjacent(_hex[? "Grid_X"], _hex[? "Grid_Y"]), _con[0], _con[1])) {
-					_hex[? "Connect"] = [_player, slot_side.both];
+				var _side = (_con[0] ? (_con[1] ? slot_side.both : slot_side.left) : slot_side.right);
+				
+				var _adjs = ds_list_create();
+				ds_list_copy(_adjs, hexagon_get_adjacent(_hex))
+				
+				if(hexagon_connect_spread(_adjs, _player, _side) == slot_side.both) {
+					var _plr = players[_player];
+					
+					if(not _plr[? "Link"]) {
+						_plr[? "Link"] = true;
+						_plr[? "Multiplier"] += 2;
+					}
 				}
 			}
 			#endregion

@@ -17,6 +17,12 @@ if(not is_undefined(_hex) and ds_exists(_hex, ds_type_map)) {
 		ds_map_destroy(_rewards);
 	}
 	
+	var _adjs = _hex[? "Adjacencies"];
+	
+	if(_adjs != -1 and ds_exists(_adjs, ds_type_list)) {
+		ds_map_destroy(_adjs);
+	}
+	
 	ds_map_destroy(_hex);
 	return 1;
 }

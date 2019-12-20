@@ -53,5 +53,7 @@ ds_map_add(_map, "Grid_Y", _gr_y);	// Hexagon's Y
 
 ds_map_add(_map, "Looks", irandom(3));
 
+ds_map_add(_map, "Adjacencies", -1); // List of adjacent tiles
+
 return _map;
 }

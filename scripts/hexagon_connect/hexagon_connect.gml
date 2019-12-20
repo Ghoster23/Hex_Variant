@@ -38,7 +38,7 @@ if(ds_exists(_hex, ds_type_map)) {
 		#endregion
 		
 		#region Check for connections on adjacent tiles
-		var _adjs = board_get_adjacent(_hex[? "Grid_X"], _hex[? "Grid_Y"]); // Get adjacents
+		var _adjs = hexagon_get_adjacent(_hex); // Get adjacents
 			
 		// If there are adjacent tiles (there should always be)
 		if(_adjs != -1 and ds_exists(_adjs, ds_type_list)) {
@@ -76,8 +76,6 @@ if(ds_exists(_hex, ds_type_map)) {
 			}
 			#endregion
 		}
-			
-		ds_list_destroy(_adjs);
 		#endregion
 	}
 	
